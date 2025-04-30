@@ -22,7 +22,7 @@ public class NacosDiscoveryHttpClientHandler : HttpClientHandler
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
         request.RequestUri = await LookupServiceAsync(request.RequestUri);
-        //是否需要传递当前请求的header?otel会自己处理?
+
         var res = await base.SendAsync(request, cancellationToken);
         return res;
     }
